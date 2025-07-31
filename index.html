@@ -23,12 +23,15 @@
 <body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
     <div class="w-full max-w-2xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
         
-        <img 
-            src="https://i.ibb.co/SXndqKj8/Banni-re-Palatium-Troyes-1.png" 
-            alt="Bannière Palatium Troyes" 
-            class="w-full h-auto"
-            onerror="this.onerror=null;this.src='https://placehold.co/800x400/cccccc/ffffff?text=Image+non+disponible';"
-        >
+        <!-- === IMAGE RÉDUITE SANS ÊTRE ROGNÉE === -->
+        <div class="w-full bg-slate-50">
+             <img 
+                src="https://i.ibb.co/SXndqKj8/Banni-re-Palatium-Troyes-1.png" 
+                alt="Bannière Palatium Troyes" 
+                class="w-full h-48 object-contain"
+                onerror="this.onerror=null;this.src='https://placehold.co/800x400/cccccc/ffffff?text=Image+non+disponible';"
+            >
+        </div>
         
         <div class="p-8">
             <div class="text-center mb-8">
@@ -41,8 +44,10 @@
                 <!-- Configuration pour FormSubmit -->
                 <input type="hidden" name="_subject" value="Nouvelle réservation de Padel !">
                 <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_autoresponse" value="Merci pour votre réservation ! Nous avons bien reçu votre demande et la traiterons dans les plus brefs délais. Voici un récapitulatif de votre demande.">
 
-                <!-- === SECTION INFORMATIONS PERSONNELLES MISE À JOUR === -->
+
+                <!-- SECTION INFORMATIONS PERSONNELLES -->
                 <div>
                     <h2 class="text-xl font-semibold text-gray-700 border-b pb-2 mb-4">Vos informations</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -81,7 +86,6 @@
                         </div>
                         <div>
                             <label for="time" class="block text-sm font-medium text-gray-600 mb-1">Heure de début</label>
-                            <!-- === CORRECTIF APPLIQUÉ ICI : Créneau par défaut === -->
                             <select id="time" name="Heure" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" required>
                                 <option value="09:00" selected>09:00</option>
                                 <option value="10:30">10:30</option>
@@ -115,7 +119,6 @@
                     <div class="mt-6">
                         <label class="block text-sm font-medium text-gray-600 mb-2">Nombre de joueurs</label>
                         <div class="flex flex-wrap gap-4">
-                            <!-- === CORRECTIF APPLIQUÉ ICI : Joueurs par défaut === -->
                             <label class="flex items-center space-x-2 cursor-pointer">
                                 <input type="radio" name="Nombre_de_joueurs" value="2" class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500" checked>
                                 <span class="text-gray-700">2 joueurs</span>
@@ -188,7 +191,6 @@
             confirmationMessage.classList.add('hidden');
         }
 
-        // === CORRECTIF APPLIQUÉ ICI : Date par défaut ===
         const today = new Date().toISOString().split('T')[0];
         const dateInput = document.getElementById("date");
         dateInput.setAttribute('min', today);
