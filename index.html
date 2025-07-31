@@ -44,6 +44,8 @@
                 <input type="hidden" name="_subject" value="Nouvelle réservation de Padel !">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_autoresponse" value="Merci pour votre réservation ! Nous avons bien reçu votre demande et la traiterons dans les plus brefs délais. Voici un récapitulatif de votre demande.">
+                <!-- === CORRECTIF APPLIQUÉ ICI : Ajout du format CSV pour la pièce jointe === -->
+                <input type="hidden" name="_format" value="csv">
 
 
                 <!-- SECTION INFORMATIONS PERSONNELLES -->
@@ -170,7 +172,6 @@
 
             fetch(action, {
                 method: 'POST',
-                // === CORRECTIF APPLIQUÉ ICI : Ajout de l'en-tête "Accept" ===
                 headers: {
                     'Accept': 'application/json'
                 },
