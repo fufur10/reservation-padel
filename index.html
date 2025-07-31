@@ -10,7 +10,6 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-        /* Style pour les navigateurs qui ne supportent pas le datepicker natif */
         input[type="date"]::-webkit-calendar-picker-indicator {
             cursor: pointer;
             opacity: 0.6;
@@ -24,12 +23,13 @@
 <body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
     <div class="w-full max-w-2xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
         
-        <!-- === IMAGE AJOUTÉE ICI === -->
-        <!-- Vous pouvez remplacer le lien src par l'URL de votre propre image -->
-    <img 
-    src="https://ibb.co/Y7kyvtCM" 
-    ...
->
+        <!-- === IMAGE CORRIGÉE ICI === -->
+        <img 
+            src="https://i.ibb.co/SXndqKj8/Banni-re-Palatium-Troyes-1.png" 
+            alt="Bannière Palatium Troyes" 
+            class="w-full h-48 object-cover"
+            onerror="this.onerror=null;this.src='https://placehold.co/800x400/cccccc/ffffff?text=Image+non+disponible';"
+        >
         
         <div class="p-8">
             <div class="text-center mb-8 -mt-4">
@@ -37,20 +37,27 @@
                 <p class="text-gray-500 mt-2">Remplissez le formulaire pour planifier votre partie.</p>
             </div>
 
-            <!-- Formulaire de réservation -->
+            <!-- Formulaire modifié pour utiliser FormSubmit -->
             <form id="bookingForm" class="space-y-6">
                 
+                <!-- Configuration pour FormSubmit -->
+                <!-- IMPORTANT : Remplacez "votre.email@example.com" par votre adresse e-mail -->
+                <input type="hidden" name="_next" value="https://votresite.com/merci.html"> <!-- Optionnel: page de remerciement -->
+                <input type="hidden" name="_subject" value="Nouvelle réservation de Padel !">
+                <input type="hidden" name="_captcha" value="false"> <!-- Désactive le captcha pour le test -->
+
+
                 <!-- Section Informations Personnelles -->
                 <div>
                     <h2 class="text-xl font-semibold text-gray-700 border-b pb-2 mb-4">Vos informations</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-600 mb-1">Nom complet</label>
-                            <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="ex: Jean Dupont" required>
+                            <input type="text" id="name" name="Nom" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="ex: Jean Dupont" required>
                         </div>
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-600 mb-1">Adresse e-mail</label>
-                            <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="ex: jean.dupont@email.com" required>
+                            <input type="email" id="email" name="Email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="ex: jean.dupont@email.com" required>
                         </div>
                     </div>
                 </div>
@@ -61,11 +68,11 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="date" class="block text-sm font-medium text-gray-600 mb-1">Date</label>
-                            <input type="date" id="date" name="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" required>
+                            <input type="date" id="date" name="Date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" required>
                         </div>
                         <div>
                             <label for="time" class="block text-sm font-medium text-gray-600 mb-1">Heure de début</label>
-                            <select id="time" name="time" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" required>
+                            <select id="time" name="Heure" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" required>
                                 <option value="" disabled selected>Choisissez un créneau</option>
                                 <option value="09:00">09:00</option>
                                 <option value="10:30">10:30</option>
@@ -83,15 +90,15 @@
                         <label class="block text-sm font-medium text-gray-600 mb-2">Durée de la partie</label>
                         <div class="flex flex-wrap gap-4">
                             <label class="flex items-center space-x-2 cursor-pointer">
-                                <input type="radio" name="duration" value="60" class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500" checked>
+                                <input type="radio" name="Durée" value="60 min" class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500" checked>
                                 <span class="text-gray-700">60 min</span>
                             </label>
                             <label class="flex items-center space-x-2 cursor-pointer">
-                                <input type="radio" name="duration" value="90" class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                                <input type="radio" name="Durée" value="90 min" class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500">
                                 <span class="text-gray-700">90 min</span>
                             </label>
                             <label class="flex items-center space-x-2 cursor-pointer">
-                                <input type="radio" name="duration" value="120" class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                                <input type="radio" name="Durée" value="120 min" class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500">
                                 <span class="text-gray-700">120 min</span>
                             </label>
                         </div>
@@ -102,8 +109,8 @@
                 <div>
                      <h2 class="text-xl font-semibold text-gray-700 border-b pb-2 mb-4">Options supplémentaires</h2>
                      <div>
-                        <label for="comments" class="block text-sm font-medium text-gray-600 mb-1">Commentaires ou demandes spécifiques</label>
-                        <textarea id="comments" name="comments" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="ex: Location de raquettes, besoin de balles..."></textarea>
+                        <label for="comments" class="block text-sm font-medium text-gray-600 mb-1">Commentaires</label>
+                        <textarea id="comments" name="Commentaires" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="ex: Location de raquettes, besoin de balles..."></textarea>
                      </div>
                 </div>
 
@@ -121,40 +128,47 @@
     <div id="confirmationMessage" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
         <div class="bg-white rounded-lg shadow-xl p-8 max-w-sm text-center">
             <h2 class="text-2xl font-bold text-green-600 mb-4">Réservation envoyée !</h2>
-            <p class="text-gray-600">Merci <span id="confirmName" class="font-semibold"></span>. Nous avons bien reçu votre demande pour le <span id="confirmDate" class="font-semibold"></span> à <span id="confirmTime" class="font-semibold"></span>. Vous recevrez un e-mail de confirmation très prochainement.</p>
+            <p class="text-gray-600">Merci ! Votre demande de réservation a bien été envoyée. Vous recevrez une copie par e-mail.</p>
             <button onclick="closeConfirmation()" class="mt-6 bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition-all">Fermer</button>
         </div>
     </div>
 
     <script>
-        // Script pour gérer la soumission du formulaire et l'affichage de la confirmation
         const form = document.getElementById('bookingForm');
         const confirmationMessage = document.getElementById('confirmationMessage');
 
         form.addEventListener('submit', function(event) {
-            event.preventDefault(); // Empêche l'envoi réel du formulaire
+            event.preventDefault(); // Empêche le rechargement de la page
 
-            // Récupérer les valeurs pour le message de confirmation
-            const name = document.getElementById('name').value;
-            const date = new Date(document.getElementById('date').value).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-            const time = document.getElementById('time').value;
+            const formData = new FormData(form);
+            const action = "https://formsubmit.co/votre.email@example.com"; // IMPORTANT: Mettez votre email ici aussi
 
-            // Afficher les valeurs dans le message
-            document.getElementById('confirmName').textContent = name;
-            document.getElementById('confirmDate').textContent = date;
-            document.getElementById('confirmTime').textContent = time;
-
-            // Afficher le message de confirmation
-            confirmationMessage.classList.remove('hidden');
+            fetch(action, {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    confirmationMessage.classList.remove('hidden'); // Affiche le message de succès
+                    form.reset(); // Réinitialise le formulaire
+                } else {
+                    // Gérer les erreurs si nécessaire
+                    alert("Une erreur s'est produite. Veuillez réessayer.");
+                }
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                alert("Une erreur s'est produite. Veuillez réessayer.");
+            });
         });
         
         // Fonction pour fermer le message de confirmation
         function closeConfirmation() {
             confirmationMessage.classList.add('hidden');
-            form.reset(); // Réinitialise le formulaire
         }
 
-        // Initialiser la date minimale à aujourd'hui pour éviter les réservations passées
+        // Initialiser la date minimale à aujourd'hui
         const today = new Date().toISOString().split('T')[0];
         document.getElementById("date").setAttribute('min', today);
     </script>
