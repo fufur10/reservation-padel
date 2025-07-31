@@ -23,11 +23,10 @@
 <body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
     <div class="w-full max-w-2xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
         
-        <!-- === IMAGE CORRIGÉE ICI === -->
         <img 
             src="https://i.ibb.co/SXndqKj8/Banni-re-Palatium-Troyes-1.png" 
             alt="Bannière Palatium Troyes" 
-            class="w-full h-48 object-cover"
+            class="w-full h-64 object-cover"
             onerror="this.onerror=null;this.src='https://placehold.co/800x400/cccccc/ffffff?text=Image+non+disponible';"
         >
         
@@ -37,27 +36,38 @@
                 <p class="text-gray-500 mt-2">Remplissez le formulaire pour planifier votre partie.</p>
             </div>
 
-            <!-- Formulaire modifié pour utiliser FormSubmit -->
             <form id="bookingForm" class="space-y-6">
                 
                 <!-- Configuration pour FormSubmit -->
-                <input type="hidden" name="_next" value="https://votresite.com/merci.html"> <!-- Optionnel: page de remerciement -->
                 <input type="hidden" name="_subject" value="Nouvelle réservation de Padel !">
-                <input type="hidden" name="_captcha" value="false"> <!-- Désactive le captcha pour le test -->
+                <input type="hidden" name="_captcha" value="false">
 
-
-                <!-- Section Informations Personnelles -->
+                <!-- === SECTION INFORMATIONS PERSONNELLES MISE À JOUR === -->
                 <div>
                     <h2 class="text-xl font-semibold text-gray-700 border-b pb-2 mb-4">Vos informations</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label for="name" class="block text-sm font-medium text-gray-600 mb-1">Nom complet</label>
-                            <input type="text" id="name" name="Nom" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="ex: Jean Dupont" required>
+                            <label for="prenom" class="block text-sm font-medium text-gray-600 mb-1">Prénom</label>
+                            <input type="text" id="prenom" name="Prénom" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="ex: Jean" required>
                         </div>
                         <div>
-                            <label for="email" class="block text-sm font-medium text-gray-600 mb-1">Adresse e-mail</label>
-                            <input type="email" id="email" name="Email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="ex: jean.dupont@email.com" required>
+                            <label for="nom" class="block text-sm font-medium text-gray-600 mb-1">Nom</label>
+                            <input type="text" id="nom" name="Nom" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="ex: Dupont" required>
                         </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-600 mb-1">Courriel</label>
+                            <input type="email" id="email" name="Courriel" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="ex: jean.dupont@email.com" required>
+                        </div>
+                        <div>
+                            <label for="telephone" class="block text-sm font-medium text-gray-600 mb-1">Numéro de téléphone</label>
+                            <input type="tel" id="telephone" name="Téléphone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="ex: 06 12 34 56 78" required>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="checkbox" name="Consentement_Marketing" value="Oui" class="h-4 w-4 mt-1 flex-shrink-0 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                            <span class="text-sm text-gray-600">Oui, j'accepte que les données personnelles soient collectées et conservées pendant 2 ans pour que l'entreprise puisse m'adresser des offres promotionnelles et des communications sur ses activités.</span>
+                        </label>
                     </div>
                 </div>
 
@@ -102,6 +112,19 @@
                             </label>
                         </div>
                     </div>
+                    <div class="mt-6">
+                        <label class="block text-sm font-medium text-gray-600 mb-2">Nombre de joueurs</label>
+                        <div class="flex flex-wrap gap-4">
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="radio" name="Nombre_de_joueurs" value="2" class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                                <span class="text-gray-700">2 joueurs</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="radio" name="Nombre_de_joueurs" value="4" class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500" checked>
+                                <span class="text-gray-700">4 joueurs</span>
+                            </label>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Section Options -->
@@ -137,10 +160,9 @@
         const confirmationMessage = document.getElementById('confirmationMessage');
 
         form.addEventListener('submit', function(event) {
-            event.preventDefault(); // Empêche le rechargement de la page
+            event.preventDefault();
 
             const formData = new FormData(form);
-            // === EMAIL MIS À JOUR ICI ===
             const action = "https://formsubmit.co/fufur1@gmail.com"; 
 
             fetch(action, {
@@ -149,29 +171,22 @@
             })
             .then(response => {
                 if (response.ok) {
-                    // Si la réponse du serveur est OK (status 200-299),
-                    // on considère la soumission comme un succès,
-                    // que la réponse soit la page d'activation ou une confirmation JSON.
-                    confirmationMessage.classList.remove('hidden'); // Affiche le message de succès
-                    form.reset(); // Réinitialise le formulaire
+                    confirmationMessage.classList.remove('hidden');
+                    form.reset();
                 } else {
-                    // Gérer les erreurs serveur (ex: status 4xx, 5xx)
                     alert("Une erreur s'est produite lors de l'envoi. Veuillez réessayer.");
                 }
             })
             .catch(error => {
-                // Gérer les erreurs réseau
                 console.error('Erreur réseau:', error);
                 alert("Une erreur réseau s'est produite. Veuillez vérifier votre connexion et réessayer.");
             });
         });
         
-        // Fonction pour fermer le message de confirmation
         function closeConfirmation() {
             confirmationMessage.classList.add('hidden');
         }
 
-        // Initialiser la date minimale à aujourd'hui
         const today = new Date().toISOString().split('T')[0];
         document.getElementById("date").setAttribute('min', today);
     </script>
