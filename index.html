@@ -145,6 +145,11 @@
 
             fetch(action, {
                 method: 'POST',
+                // === CORRECTIF APPLIQUÉ ICI ===
+                // Ajout de l'en-tête "Accept" pour demander une réponse JSON
+                headers: {
+                    'Accept': 'application/json'
+                },
                 body: formData,
             })
             .then(response => response.json())
