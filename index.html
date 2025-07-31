@@ -41,7 +41,6 @@
             <form id="bookingForm" class="space-y-6">
                 
                 <!-- Configuration pour FormSubmit -->
-                <!-- IMPORTANT : Remplacez "votre.email@example.com" par votre adresse e-mail -->
                 <input type="hidden" name="_next" value="https://votresite.com/merci.html"> <!-- Optionnel: page de remerciement -->
                 <input type="hidden" name="_subject" value="Nouvelle réservation de Padel !">
                 <input type="hidden" name="_captcha" value="false"> <!-- Désactive le captcha pour le test -->
@@ -137,12 +136,12 @@
         const form = document.getElementById('bookingForm');
         const confirmationMessage = document.getElementById('confirmationMessage');
 
-        // === CORRECTIF APPLIQUÉ ICI ===
         form.addEventListener('submit', function(event) {
             event.preventDefault(); // Empêche le rechargement de la page
 
             const formData = new FormData(form);
-            const action = "https://formsubmit.co/votre.email@example.com"; // IMPORTANT: Mettez votre email ici aussi
+            // === EMAIL MIS À JOUR ICI ===
+            const action = "https://formsubmit.co/fufur1@gmail.com"; 
 
             fetch(action, {
                 method: 'POST',
