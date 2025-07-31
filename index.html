@@ -137,6 +137,7 @@
         const form = document.getElementById('bookingForm');
         const confirmationMessage = document.getElementById('confirmationMessage');
 
+        // === CORRECTIF APPLIQUÉ ICI ===
         form.addEventListener('submit', function(event) {
             event.preventDefault(); // Empêche le rechargement de la page
 
@@ -145,26 +146,24 @@
 
             fetch(action, {
                 method: 'POST',
-                // === CORRECTIF APPLIQUÉ ICI ===
-                // Ajout de l'en-tête "Accept" pour demander une réponse JSON
-                headers: {
-                    'Accept': 'application/json'
-                },
                 body: formData,
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
+            .then(response => {
+                if (response.ok) {
+                    // Si la réponse du serveur est OK (status 200-299),
+                    // on considère la soumission comme un succès,
+                    // que la réponse soit la page d'activation ou une confirmation JSON.
                     confirmationMessage.classList.remove('hidden'); // Affiche le message de succès
                     form.reset(); // Réinitialise le formulaire
                 } else {
-                    // Gérer les erreurs si nécessaire
-                    alert("Une erreur s'est produite. Veuillez réessayer.");
+                    // Gérer les erreurs serveur (ex: status 4xx, 5xx)
+                    alert("Une erreur s'est produite lors de l'envoi. Veuillez réessayer.");
                 }
             })
             .catch(error => {
-                console.error('Erreur:', error);
-                alert("Une erreur s'est produite. Veuillez réessayer.");
+                // Gérer les erreurs réseau
+                console.error('Erreur réseau:', error);
+                alert("Une erreur réseau s'est produite. Veuillez vérifier votre connexion et réessayer.");
             });
         });
         
